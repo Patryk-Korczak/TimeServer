@@ -1,5 +1,6 @@
 package com.example;
 
+import java.net.InetAddress;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,18 @@ public class Main {
         Server myServer = new Server();
         myServer.startServer(port);
         myScanner.nextLine();
+
+
+        Multicast multicast = new Multicast(7, "224.0.0.0");
+        multicast.tcpPort = port;
+        try {
+            multicast.tcpAddress = InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        multicast.start();
+
+
         boolean menuFlag = true;
         while(menuFlag){
             String command = myScanner.nextLine();

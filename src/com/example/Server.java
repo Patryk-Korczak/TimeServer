@@ -23,6 +23,7 @@ public class Server extends Thread{
             this.myServer = null;
             System.out.println(e.getMessage());
         }
+
     }
 
     public void stopServer() {
